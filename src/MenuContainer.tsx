@@ -1,9 +1,34 @@
-import React, { Component } from "react";
+import React, {Component, useState} from "react";
+import MenuButton from "./MenuButton";
+import {Menu} from "./Menu";
+import any = jasmine.any;
 
-class MenuContainer extends Component {
-    render() {
-        return (
+export const MenuContainer = ()=> {
+
+    const [state, setState] = useState({visible: false})
+
+
+  const toggleMenu = () => {
+        setState({
+            visible: !state.visible
+        });
+    }
+
+
+    const handleMouseDown = (e:any) => {
+        toggleMenu();
+
+        console.log("clicked");
+        e.stopPropagation();
+    }
+
+            return (
+
+
             <div>
+                <MenuButton handleMouseDown={handleMouseDown}/>
+                <Menu handleMouseDown={handleMouseDown}
+                      menuVisibility={state.visible}/>
                 <div>
                     <p>Can you spot the item that doesn't belong?</p>
                     <ul>
@@ -17,8 +42,8 @@ class MenuContainer extends Component {
                     </ul>
                 </div>
             </div>
-        );
+        )
     }
-}
 
-export default MenuContainer;
+
+
