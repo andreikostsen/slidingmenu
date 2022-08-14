@@ -1,12 +1,13 @@
-import React, {Component, useState} from "react";
+import React, {useState} from "react";
 import MenuButton from "./MenuButton";
 import {Menu} from "./Menu";
-import any = jasmine.any;
+import  s from "./Main.module.css"
 
 export const MenuContainer = ()=> {
 
     const [state, setState] = useState({visible: false})
 
+    console.log(!state.visible)
 
   const toggleMenu = () => {
         setState({
@@ -15,11 +16,11 @@ export const MenuContainer = ()=> {
     }
 
 
-    const handleMouseDown = (e:any) => {
+    const handleMouseDown = () => {
         toggleMenu();
 
         console.log("clicked");
-        e.stopPropagation();
+
     }
 
             return (
@@ -29,7 +30,7 @@ export const MenuContainer = ()=> {
                 <MenuButton handleMouseDown={handleMouseDown}/>
                 <Menu handleMouseDown={handleMouseDown}
                       menuVisibility={state.visible}/>
-                <div>
+                <div id="container" className={s.container}>
                     <p>Can you spot the item that doesn't belong?</p>
                     <ul>
                         <li>Lorem</li>
